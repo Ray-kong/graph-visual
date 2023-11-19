@@ -1,10 +1,5 @@
-
 function App() {
-  return (
-      <p className="text-green-500">
-        Click on the Vite and React logos to learn more
-      </p>
-  )
+  return <p className="text-blue-600">Hello World</p>;
 }
 
-export default App
+export default App;
