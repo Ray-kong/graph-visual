@@ -11,14 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["DFS", "BFS", "Djikstra", "Bellman-Ford"];
 
 function ResponsiveAppBar() {
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
+      <Container className="bg-primary" maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"

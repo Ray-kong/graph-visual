@@ -4,6 +4,7 @@ function CodeBlock(props) {
   return (
     <>
       <CopyBlock
+        highlight={props.highlight}
         text={props.code}
         language={props.language}
         showLineNumbers={props.showLineNumbers}
