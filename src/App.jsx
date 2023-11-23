@@ -1,9 +1,9 @@
-import CodeBlock from "./components/CodeBlock";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "./components/Navbar";
 import cy from "./components/Graph.js";
-import { useEffect, useState } from "react";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
+import CodeBlock from "./components/CodeBlock";
 import DFSCode from "./code_snippets/psuedocode/DFS.js";
 
 function App() {
@@ -12,7 +12,53 @@ function App() {
   }, []);
 
   const [paused, setPaused] = useState(true);
-  const [highlight, setHighlight] = useState("1-10");
+  const [highlight, setHighlight] = useState("1"); // does not want to hard code this but is there a better way?
+  //The useRef Hook allows you to persist values between renders.
+  // It can be used to store a mutable value that does not cause a re-render when updated.
+  const intervalIdRef = useRef(null);
+  const highlightRef = useRef(highlight);
+  const totalLines = 10; // Total number of lines in the code snippet
+
+  const updateHighlight = (newHighlight) => {
+    setHighlight(newHighlight);
+    highlightRef.current = newHighlight;
+  };
+
+  const highlightBackward = () => {
+    updateHighlight(Math.max(1, parseInt(highlightRef.current) - 1).toString());
+  };
+
+  const highlightForward = () => {
+    updateHighlight(
+      Math.min(totalLines, parseInt(highlightRef.current) + 1).toString()
+    );
+  };
+
+  const startHighlighting = () => {
+    setPaused(false);
+    clearInterval(intervalIdRef.current);
+    intervalIdRef.current = setInterval(() => {
+      let nextHighlight = parseInt(highlightRef.current) + 1;
+      if (nextHighlight > totalLines) {
+        clearInterval(intervalIdRef.current);
+      } else {
+        updateHighlight(nextHighlight.toString());
+      }
+    }, 1000); // Move to next line every second
+  };
+
+  const stopHighlighting = () => {
+    setPaused(true);
+    clearInterval(intervalIdRef.current);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (intervalIdRef.current) {
+        clearInterval(intervalIdRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -30,30 +76,22 @@ function App() {
             highlight={highlight}
             code={DFSCode}
             language="JavaScript"
-            showLineNumbers="true"
+            showLineNumbers={true}
           />
           <div className="bg-gradient-to-r from-primary to-secondary flex flex-row justify-center items-center gap-4 p-2">
-            <button onClick={""}>
-              <GrPowerReset className="text-white" size={20}></GrPowerReset>
-            </button>
-            <button onClick={""}>
+            <button onClick={highlightBackward}>
               <FaBackward className="text-white" size={15}></FaBackward>
             </button>
             {paused ? (
-              <button
-                onClick={() => {
-                  setPaused(false);
-                  setHighlight("4");
-                }}
-              >
+              <button onClick={startHighlighting}>
                 <FaPlay className="text-white" size={20}></FaPlay>
               </button>
             ) : (
-              <button onClick={() => setPaused(true)}>
+              <button onClick={stopHighlighting}>
                 <FaPause className="text-white" size={20}></FaPause>
               </button>
             )}
-            <button onClick={""}>
+            <button onClick={highlightForward}>
               <FaForward className="text-white" size={15}></FaForward>
             </button>
           </div>
