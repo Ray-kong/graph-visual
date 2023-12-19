@@ -4,10 +4,10 @@ const cy = () => {
   console.log("cy");
   cytoscape({
     container: document.getElementById("GraphContainer"),
-    zoomingEnabled: true,
+    userZoomingEnabled: false,
     boxSelectionEnabled: false,
     autounselectify: true,
-    panningEnabled: true,
+    userPanningEnabled: false,
 
     style: cytoscape
       .stylesheet()
@@ -17,7 +17,7 @@ const cy = () => {
       })
       .selector("edge")
       .style({
-        width: 4,
+        width: 2,
         "line-color": "#ddd",
       })
       .selector(".highlighted")
@@ -61,10 +61,8 @@ const cy = () => {
       padding: 100,
     },
   })
-    .center()
-    .viewport({
-      zoom: 0,
-    });
+    .viewport({ zoom: 0.7 })
+    .center();
 };
 
 export default cy;

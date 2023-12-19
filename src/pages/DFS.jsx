@@ -5,6 +5,8 @@ import CodeBlock from "../components/CodeBlock";
 import DFSCode from "../code_snippets/psuedocode/DFS.js";
 
 function DFS() {
+  document.title = "DFS | Graph Algorithm Visualizer";
+
   useEffect(() => {
     cy();
   }, []);
@@ -72,7 +74,7 @@ function DFS() {
           <CodeBlock
             highlight={highlight}
             code={DFSCode}
-            language="JavaScript"
+            language="Text"
             showLineNumbers={true}
           />
           <div className="bg-gradient-to-r from-primary to-secondary flex flex-row justify-center items-center gap-4 p-2">

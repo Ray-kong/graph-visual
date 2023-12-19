@@ -1,9 +1,13 @@
 import React from "react";
 
 function Home() {
+  document.title = "Home | Graph Algorithm Visualizer";
+
   return (
-    <div className="flex flex-col lg:flex-row min-w-screen min-h-screen justify-center px-10 pt-6 gap-10">
-      <h1 className="text-white">Home</h1>
+    <div className="min-w-screen min-h-screen">
+      <h1 className="text-white text-center text- text-2xl pt-10">
+        Welcome to the Graph Algorithm Visualizer!
+      </h1>
     </div>
   );
 }
