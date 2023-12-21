@@ -1,7 +1,7 @@
 import cytoscape from "cytoscape";
+import { useEffect } from "react";
 
-const cy = () => {
-  console.log("cy");
+var cy = () => {
   cytoscape({
     container: document.getElementById("GraphContainer"),
     userZoomingEnabled: false,
@@ -23,6 +23,14 @@ const cy = () => {
       .selector(".highlighted")
       .style({
         "background-color": "#61bffc",
+        "line-color": "#61bffc",
+        "transition-property":
+          "background-color, line-color, target-arrow-color",
+        "transition-duration": "0.5s",
+      })
+      .selector(".current")
+      .style({
+        "background-color": "#193052",
         "line-color": "#61bffc",
         "transition-property":
           "background-color, line-color, target-arrow-color",
