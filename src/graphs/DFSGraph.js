@@ -1,7 +1,11 @@
 import cytoscape from "cytoscape";
+import Node from "../data_structures/Node.js";
+import Edge from "../data_structures/Edge.js";
 
-var DFSGraph = () => {
-  cytoscape({
+var cy;
+
+function init() {
+  cy = cytoscape({
     container: document.getElementById("GraphContainer"),
     userZoomingEnabled: false,
     boxSelectionEnabled: false,
@@ -53,7 +57,7 @@ var DFSGraph = () => {
         { data: { id: "ae", source: "a", target: "e" } },
         { data: { id: "ab", source: "a", target: "b" } },
         { data: { id: "bc", source: "b", target: "c" } },
-        { data: { id: "de", source: "d", target: "e" } },
+        { data: { id: "ed", source: "d", target: "e" } },
         { data: { id: "ef", source: "e", target: "f" } },
         { data: { id: "dg", source: "d", target: "g" } },
         { data: { id: "ch", source: "c", target: "h" } },
@@ -67,9 +71,44 @@ var DFSGraph = () => {
       roots: "#a",
       padding: 100,
     },
-  })
-    .viewport({ zoom: 0.7 })
-    .center();
+  });
+}
+
+//TODO: move to update class
+
+export function highlightNode(nodeId) {
+  cy.nodes().removeClass("highlighted").removeClass("current");
+  cy.getElementById(nodeId).addClass("current");
+}
+
+export function highlightEdge(edgeId) {
+  cy.edges().removeClass("highlighted").removeClass("current");
+  cy.getElementById(edgeId).addClass("current");
+}
+
+export function ListNodes() {
+  let nodes = cy.nodes();
+  let arr = [];
+  nodes.forEach((node) => {
+    let n = new Node(node.id());
+    arr.push(n);
+  });
+  return arr;
+}
+
+export function ListEdges() {
+  let edges = cy.edges();
+  let arr = [];
+  edges.forEach((edge) => {
+    let e = new Edge(edge.id().charAt(0), edge.id().charAt(1), 0);
+    arr.push(e);
+  });
+  return arr;
+}
+
+var DFSGraph = () => {
+  init();
+  return cy.viewport({ zoom: 0.7 }).center();
 };
 
 export default DFSGraph;

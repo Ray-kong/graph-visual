@@ -5,3 +5,5 @@ class Edge {
     this.weight = weight;
   }
 }
+
+export default Edge;

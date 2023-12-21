@@ -1,5 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import DFSGraph from "../graphs/DFSGraph.js";
+import DFSGraph, {
+  highlightNode,
+  highlightEdge,
+  ListNodes,
+  ListEdges,
+} from "../graphs/DFSGraph.js";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
 import CodeBlock from "../components/CodeBlock";
 import DFSPsuedo from "../code_snippets/psuedocode/DFSPsuedo.js";
@@ -9,6 +14,7 @@ function DFS() {
 
   useEffect(() => {
     DFSGraph();
+    ListEdges();
   }, []);
 
   const [paused, setPaused] = useState(true);
