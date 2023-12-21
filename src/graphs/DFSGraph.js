@@ -1,7 +1,6 @@
 import cytoscape from "cytoscape";
-import { useEffect } from "react";
 
-var cy = () => {
+var DFSGraph = () => {
   cytoscape({
     container: document.getElementById("GraphContainer"),
     userZoomingEnabled: false,
@@ -73,4 +72,4 @@ var cy = () => {
     .center();
 };
 
-export default cy;
+export default DFSGraph;

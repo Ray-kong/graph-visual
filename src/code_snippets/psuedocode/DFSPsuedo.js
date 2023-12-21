@@ -1,4 +1,4 @@
-const DFSCode = `G = (V,E) is a graph
+const DFSPsuedo = `G = (V,E) is a graph
 discovered[u] = 0 ∀u
 
 DFS(u):
@@ -9,4 +9,4 @@ DFS(u):
       DFS(v)
 )`;
 
-export default DFSCode;
+export default DFSPsuedo;

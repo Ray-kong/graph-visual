@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
-import cy from "../components/Graph.js";
+import DFSGraph from "../graphs/DFSGraph.js";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
 import CodeBlock from "../components/CodeBlock";
-import DFSCode from "../code_snippets/psuedocode/DFS.js";
+import DFSPsuedo from "../code_snippets/psuedocode/DFSPsuedo.js";
 
 function DFS() {
   document.title = "DFS | Graph Algorithm Visualizer";
 
   useEffect(() => {
-    cy();
+    DFSGraph();
   }, []);
 
   const [paused, setPaused] = useState(true);
@@ -73,7 +73,7 @@ function DFS() {
         <div className="min-w-[400px] max-w-[600px] flex flex-col">
           <CodeBlock
             highlight={highlight}
-            code={DFSCode}
+            code={DFSPsuedo}
             language="Text"
             showLineNumbers={true}
           />
