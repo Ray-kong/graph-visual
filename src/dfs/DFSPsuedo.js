@@ -7,6 +7,6 @@ DFS(u):
     if (discovered[v]=0):
       parent[v] = u
       DFS(v)
-)`;
+`;
 
 export default DFSPsuedo;

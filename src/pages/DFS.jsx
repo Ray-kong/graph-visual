@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import DFSGraph from "../DFS/DFSGraph.js";
+import { initDFSGraph } from "../DFS/DFSGraph.js";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
 import CodeBlock from "../components/CodeBlock";
 import DFSPsuedo from "../dfs/DFSPsuedo.js";
@@ -8,8 +8,10 @@ function DFS() {
   document.title = "DFS | Graph Algorithm Visualizer";
 
   useEffect(() => {
-    DFSGraph();
+    initDFSGraph();
   }, []);
+
+  //----------------------------------- TO BE REFACTORED ----------------------------------------------------------------------------------
 
   const [paused, setPaused] = useState(true);
   const [highlight, setHighlight] = useState("1"); // does not want to hard code this but is there a better way?
@@ -59,6 +61,8 @@ function DFS() {
       }
     };
   }, []);
+
+  //---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
