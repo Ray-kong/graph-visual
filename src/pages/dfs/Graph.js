@@ -1,5 +1,6 @@
 import Node from "../../data_structures/Node.js";
 import Edge from "../../data_structures/Edge.js";
+import Graph from "../../data_structures/Graph";
 
 const nodes = [];
 const edges = [];

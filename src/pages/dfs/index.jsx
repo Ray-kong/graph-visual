@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { initDFSGraph } from "../DFS/DFSGraph.js";
+import { initDFSGraph } from "../dfs/Graph.js";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
 import CodeBlock from "../../components/CodeBlock";
 import DFSPsuedo from "./Psuedo.js";
