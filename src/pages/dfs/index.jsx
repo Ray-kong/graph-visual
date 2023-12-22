@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import DFSGraph from "../DFS/DFSGraph.js";
+import DFSGraph from "./Graph.js";
 import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
-import CodeBlock from "../components/CodeBlock";
-import DFSPsuedo from "../dfs/DFSPsuedo.js";
+import CodeBlock from "../../components/CodeBlock";
+import DFSPsuedo from "./Psuedo.js";
 
 function DFS() {
   document.title = "DFS | Graph Algorithm Visualizer";

@@ -1,6 +1,6 @@
 import cytoscape from "cytoscape";
-import Node from "../data_structures/Node.js";
-import Edge from "../data_structures/Edge.js";
+import Node from "../../data_structures/Node.js";
+import Edge from "../../data_structures/Edge.js";
 
 var cy;
 
