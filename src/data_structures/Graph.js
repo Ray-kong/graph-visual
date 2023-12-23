@@ -87,6 +87,19 @@ class Graph {
       })
       .run();
   }
+
+  removeCurrent() {
+    this.cy.nodes().removeClass("current");
+  }
+
+  setCurrent(nodeId) {
+    this.removeCurrent();
+    this.cy.getElementById(nodeId).addClass("highlighted").addClass("current");
+  }
+
+  highlightEdge(edgeId) {
+    this.cy.getElementById(edgeId).addClass("highlighted");
+  }
 }
 
 export default Graph;

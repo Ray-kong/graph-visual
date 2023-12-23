@@ -1,9 +1,70 @@
-import { ListEdges, ListNodes } from "../graphs/DFSGraph";
+import { nodes, edges } from "./Graph";
+import Graph from "../../data_structures/Graph";
+import Stack from "../../data_structures/Stack";
+
+const Stages = ["checkCurrentNode", "checkOutEdges"];
+
 class DFS {
-  constructor() {
-    this.startNode = "a";
-    this.nodes = ListNodes();
-    this.edges = ListEdges();
-    this.highlightLine = "4";
+  constructor(highlightLine) {
+    this.nodes = nodes;
+    this.edges = edges;
+    this.highlightLine = highlightLine;
+    this.stage = Stages[0];
+    this.graph = new Graph(nodes, edges);
+    this.stack = new Stack();
+    this.currentNode = null;
+    this.discovered = [];
+    this.graph.init(true, "#a");
+    this.stack.push("a");
+  }
+
+  next() {
+    switch (this.stage) {
+      case Stages[0]:
+        this.checkCurrentNode();
+        break;
+      case Stages[1]:
+        this.checkOutEdges();
+        break;
+    }
+  }
+
+  checkCurrentNode() {
+    if (!this.stack.isEmpty()) {
+      this.currentNode = this.stack.pop();
+      this.discovered.push(this.currentNode);
+      this.graph.setCurrent(this.currentNode);
+      this.stage = Stages[1];
+      this.highlightLine = "5";
+    }
+  }
+
+  checkOutEdges() {
+    let newEdges = [];
+    edges.forEach((edge) => {
+      if (edge.start === this.currentNode) {
+        this.graph.highlightEdge(edge.start + edge.end);
+        newEdges.push(edge.end);
+      }
+    });
+    newEdges.sort().reverse();
+    newEdges.forEach((edge) => {
+      this.stack.push(edge);
+    });
+    this.stage = Stages[0];
+    this.graph.removeCurrent();
+    this.highlightLine = "9";
+  }
+
+  finished() {
+    return (
+      this.nodes.length == this.discovered.length && this.stage == Stages[0]
+    );
+  }
+
+  lineToHighlight() {
+    return this.highlightLine;
   }
 }
+
+export default DFS;

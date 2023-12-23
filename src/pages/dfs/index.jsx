@@ -1,20 +1,73 @@
 import React, { useEffect, useState, useRef } from "react";
-import { initDFSGraph } from "../dfs/Graph.js";
-import { FaPlay, FaBackward, FaForward, FaPause } from "react-icons/fa";
+import { FaPlay, FaForward, FaPause, FaPlus, FaMinus } from "react-icons/fa";
+import { GrPowerReset } from "react-icons/gr";
 import CodeBlock from "../../components/CodeBlock";
 import DFSPsuedo from "./Psuedo.js";
+import DFS from "./DFS.js";
 
-function DFS() {
+function DFSPage() {
   document.title = "DFS | Graph Algorithm Visualizer";
 
+  const [search, setSearch] = useState(null);
+  const [paused, setPaused] = useState(true);
+  const [speed, setSpeed] = useState(1000);
+  const [play, setPlay] = useState(null);
+  const [highlight, setHighlight] = useState(null);
+
   useEffect(() => {
-    initDFSGraph();
+    reset();
   }, []);
+
+  function reset() {
+    setHighlight("4");
+    setSearch(new DFS("4"));
+    stopInterval();
+  }
+
+  function startInterval() {
+    setPaused(false);
+    setPlay(
+      setInterval(() => {
+        if (search.finished()) {
+          stopInterval();
+        } else {
+          search.next();
+          setHighlight(search.lineToHighlight());
+        }
+      }, speed)
+    );
+  }
+
+  function stopInterval() {
+    if (play) {
+      clearInterval(play);
+      setPaused(true);
+    }
+  }
+
+  function speedUp() {
+    if (speed > 500) {
+      setSpeed(speed - 100);
+    }
+    if (!paused) {
+      stopInterval();
+      startInterval();
+    }
+  }
+
+  function slowDown() {
+    if (speed < 3000) {
+      setSpeed(speed + 100);
+    }
+    if (!paused) {
+      stopInterval();
+      startInterval();
+    }
+  }
 
   //----------------------------------- TO BE REFACTORED ----------------------------------------------------------------------------------
 
-  const [paused, setPaused] = useState(true);
-  const [highlight, setHighlight] = useState("1"); // does not want to hard code this but is there a better way?
+  // does not want to hard code this but is there a better way?
   //The useRef Hook allows you to persist values between renders.
   // It can be used to store a mutable value that does not cause a re-render when updated.
   const intervalIdRef = useRef(null);
@@ -82,21 +135,41 @@ function DFS() {
             showLineNumbers={true}
           />
           <div className="bg-gradient-to-r from-primary to-secondary flex flex-row justify-center items-center gap-4 p-2">
-            <button onClick={highlightBackward}>
-              <FaBackward className="text-white" size={15}></FaBackward>
+            <button onClick={() => reset()}>
+              <GrPowerReset className="text-white" size={20}></GrPowerReset>
+            </button>
+            <button onClick={() => slowDown()}>
+              <FaMinus className="text-white" size={15}></FaMinus>
             </button>
             {paused ? (
-              <button onClick={startHighlighting}>
+              <button onClick={() => startInterval()}>
                 <FaPlay className="text-white" size={20}></FaPlay>
               </button>
             ) : (
-              <button onClick={stopHighlighting}>
+              <button
+                onClick={() => {
+                  stopInterval();
+                }}
+              >
                 <FaPause className="text-white" size={20}></FaPause>
               </button>
             )}
-            <button onClick={highlightForward}>
-              <FaForward className="text-white" size={15}></FaForward>
+            <button onClick={() => speedUp()}>
+              <FaPlus className="text-white" size={15}></FaPlus>
             </button>
+            {paused ? (
+              <button
+                onClick={() => {
+                  if (paused) {
+                    search.next();
+                  }
+                }}
+              >
+                <FaForward className="text-white" size={15}></FaForward>
+              </button>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
@@ -104,4 +177,4 @@ function DFS() {
   );
 }
 
-export default DFS;
+export default DFSPage;

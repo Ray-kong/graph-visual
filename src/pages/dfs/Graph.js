@@ -1,9 +1,8 @@
 import Node from "../../data_structures/Node.js";
 import Edge from "../../data_structures/Edge.js";
-import Graph from "../../data_structures/Graph";
 
-const nodes = [];
-const edges = [];
+export const nodes = [];
+export const edges = [];
 
 nodes.push(new Node("a"));
 nodes.push(new Node("b"));
@@ -23,9 +22,3 @@ edges.push(new Edge("e", "f", 0));
 edges.push(new Edge("d", "g", 0));
 edges.push(new Edge("c", "h", 0));
 edges.push(new Edge("c", "i", 0));
-
-const DFSGraph = new Graph(nodes, edges);
-
-export function initDFSGraph() {
-  DFSGraph.init(true, "#a");
-}
