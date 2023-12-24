@@ -1,16 +1,13 @@
-import { nodes, edges } from "./Graph";
-import Graph from "../../data_structures/Graph";
+import { nodes, edges } from "./DFSGraph";
 import Stack from "../../data_structures/Stack";
+import Algorithm from "../Algorithm";
 
 const Stages = ["checkCurrentNode", "checkOutEdges"];
 
-class DFS {
+class DFSAlgorithm extends Algorithm {
   constructor(highlightLine) {
-    this.nodes = nodes;
-    this.edges = edges;
-    this.highlightLine = highlightLine;
+    super(nodes, edges, highlightLine);
     this.stage = Stages[0];
-    this.graph = new Graph(nodes, edges);
     this.stack = new Stack();
     this.currentNode = null;
     this.discovered = [];
@@ -53,7 +50,7 @@ class DFS {
     });
     this.stage = Stages[0];
     this.graph.removeCurrent();
-    this.highlightLine = "9";
+    this.highlightLine = "8";
   }
 
   finished() {
@@ -61,10 +58,6 @@ class DFS {
       this.nodes.length == this.discovered.length && this.stage == Stages[0]
     );
   }
-
-  lineToHighlight() {
-    return this.highlightLine;
-  }
 }
 
-export default DFS;
+export default DFSAlgorithm;

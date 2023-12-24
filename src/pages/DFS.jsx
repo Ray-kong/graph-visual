@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlay, FaForward, FaPause, FaPlus, FaMinus } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
-import CodeBlock from "../../components/CodeBlock";
-import DFSPsuedo from "./Psuedo.js";
-import DFS from "./DFS.js";
+import CodeBlock from "../components/CodeBlock.jsx";
+import DFSPsuedo from "../algorithms/dfs/DFSPsuedo.js";
+import DFSAlgorithm from "../algorithms/dfs/DFSAlgorithm.js";
 
-function DFSPage() {
+function DFS() {
   document.title = "DFS | Graph Algorithm Visualizer";
 
   const [search, setSearch] = useState(null);
@@ -20,7 +20,7 @@ function DFSPage() {
 
   function reset() {
     setHighlight("4");
-    setSearch(new DFS("4"));
+    setSearch(new DFSAlgorithm(highlight));
     stopInterval();
   }
 
@@ -64,58 +64,6 @@ function DFSPage() {
       startInterval();
     }
   }
-
-  //----------------------------------- TO BE REFACTORED ----------------------------------------------------------------------------------
-
-  // does not want to hard code this but is there a better way?
-  //The useRef Hook allows you to persist values between renders.
-  // It can be used to store a mutable value that does not cause a re-render when updated.
-  const intervalIdRef = useRef(null);
-  const highlightRef = useRef(highlight);
-  const totalLines = 10; // Total number of lines in the code snippet
-
-  const updateHighlight = (newHighlight) => {
-    setHighlight(newHighlight);
-    highlightRef.current = newHighlight;
-  };
-
-  const highlightBackward = () => {
-    updateHighlight(Math.max(1, parseInt(highlightRef.current) - 1).toString());
-  };
-
-  const highlightForward = () => {
-    updateHighlight(
-      Math.min(totalLines, parseInt(highlightRef.current) + 1).toString()
-    );
-  };
-
-  const startHighlighting = () => {
-    setPaused(false);
-    clearInterval(intervalIdRef.current);
-    intervalIdRef.current = setInterval(() => {
-      let nextHighlight = parseInt(highlightRef.current) + 1;
-      if (nextHighlight > totalLines) {
-        clearInterval(intervalIdRef.current);
-      } else {
-        updateHighlight(nextHighlight.toString());
-      }
-    }, 1000); // Move to next line every second
-  };
-
-  const stopHighlighting = () => {
-    setPaused(true);
-    clearInterval(intervalIdRef.current);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (intervalIdRef.current) {
-        clearInterval(intervalIdRef.current);
-      }
-    };
-  }, []);
-
-  //---------------------------------------------------------------------------------------------------------------------------------------
 
   return (
     <>
@@ -177,4 +125,4 @@ function DFSPage() {
   );
 }
 
-export default DFSPage;
+export default DFS;

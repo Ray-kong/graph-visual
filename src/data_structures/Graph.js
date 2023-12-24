@@ -10,10 +10,10 @@ class Graph {
   init(directed, root) {
     this.cy = cytoscape({
       container: document.getElementById("GraphContainer"),
-      userZoomingEnabled: true,
+      userZoomingEnabled: false,
       boxSelectionEnabled: false,
       autounselectify: true,
-      userPanningEnabled: true,
+      userPanningEnabled: false,
 
       style: cytoscape
         .stylesheet()
