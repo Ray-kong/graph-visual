@@ -1,18 +1,18 @@
-import { nodes, edges } from "./DFSGraph";
-import Stack from "../../data_structures/Stack";
 import Algorithm from "../Algorithm";
+import Queue from "../../data_structures/Queue";
+import { nodes, edges } from "./BFSGraph";
 
 const Stages = ["checkCurrentNode", "checkOutEdges"];
 
-class DFSAlgorithm extends Algorithm {
+class BFSAlgorithm extends Algorithm {
   constructor() {
-    super(nodes, edges, "4");
+    super(nodes, edges, "6");
     this.stage = Stages[0];
-    this.stack = new Stack();
+    this.queue = new Queue();
     this.currentNode = null;
     this.discovered = [];
     this.graph.init(true, "#a");
-    this.stack.push("a");
+    this.queue.enqueue("a");
   }
 
   next() {
@@ -27,12 +27,12 @@ class DFSAlgorithm extends Algorithm {
   }
 
   checkCurrentNode() {
-    if (!this.stack.isEmpty()) {
-      this.currentNode = this.stack.pop();
+    if (!this.queue.isEmpty()) {
+      this.currentNode = this.queue.dequeue();
       this.discovered.push(this.currentNode);
       this.graph.setCurrent(this.currentNode);
       this.stage = Stages[1];
-      this.highlightLine = "5";
+      this.highlightLine = "7";
     }
   }
 
@@ -44,13 +44,13 @@ class DFSAlgorithm extends Algorithm {
         newEdges.push(edge.end);
       }
     });
-    newEdges.sort().reverse();
+    newEdges.sort();
     newEdges.forEach((edge) => {
-      this.stack.push(edge);
+      this.queue.enqueue(edge);
     });
     this.stage = Stages[0];
     this.graph.removeCurrent();
-    this.highlightLine = "8";
+    this.highlightLine = "11";
   }
 
   finished() {
@@ -60,4 +60,4 @@ class DFSAlgorithm extends Algorithm {
   }
 }
 
-export default DFSAlgorithm;
+export default BFSAlgorithm;
