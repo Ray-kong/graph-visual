@@ -5,7 +5,7 @@ function Error() {
 
   return (
     <div className="min-w-screen min-h-screen">
-      <h1 className="text-white text-center pt-10">Error! Page Not Found</h1>
+      <h1 className="text-white text-center pt-10">Page Coming Soon!</h1>
     </div>
   );
 }
