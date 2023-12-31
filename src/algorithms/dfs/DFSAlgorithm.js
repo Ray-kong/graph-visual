@@ -11,7 +11,7 @@ class DFSAlgorithm extends Algorithm {
     this.stack = new Stack();
     this.currentNode = null;
     this.discovered = [];
-    this.graph.init(true, "#a");
+    this.graph.init(false, "#a", false);
     this.stack.push("a");
   }
 

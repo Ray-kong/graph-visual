@@ -7,7 +7,7 @@ class Graph {
     this.cy = null;
   }
 
-  init(directed, root) {
+  init(directed, root, weighted) {
     this.cy = cytoscape({
       container: document.getElementById("GraphContainer"),
       userZoomingEnabled: false,
@@ -20,11 +20,23 @@ class Graph {
         .selector("node")
         .style({
           content: "data(id)",
+          "text-valign": "center",
+          "text-halign": "center",
         })
         .selector("edge")
         .style({
           width: 2,
           "line-color": "#ddd",
+        })
+        .selector(".weighted")
+        .style({
+          label: "data(weight)",
+        })
+        .selector(".directed")
+        .style({
+          "target-arrow-color": "#000000",
+          "target-arrow-shape": "triangle",
+          "curve-style": "bezier",
         })
         .selector(".highlighted")
         .style({
@@ -45,7 +57,7 @@ class Graph {
     });
     this.initNodes();
     this.initEdges();
-    this.initLayout(directed, root);
+    this.initLayout(directed, root, weighted);
     this.cy.viewport({ zoom: 0.7 });
     this.cy.center();
   }
@@ -77,15 +89,29 @@ class Graph {
     });
   }
 
-  initLayout(directed, root) {
+  initLayout(directed, root, weighted) {
+    if (weighted) {
+      this.addWeights();
+    }
+    if (directed) {
+      this.addArrows();
+    }
     this.cy
       .layout({
         name: "breadthfirst",
-        directed: directed,
+        directed: true,
         root: root,
         padding: 100,
       })
       .run();
+  }
+
+  addWeights() {
+    this.cy.edges().addClass("weighted");
+  }
+
+  addArrows() {
+    this.cy.edges().addClass("directed");
   }
 
   removeCurrent() {

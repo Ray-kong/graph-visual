@@ -4,6 +4,7 @@ import { GrPowerReset } from "react-icons/gr";
 import CodeBlock from "../components/CodeBlock.jsx";
 import DFSAlgorithm from "../algorithms/dfs/DFSAlgorithm.js";
 import BFSAlgorithm from "../algorithms/bfs/BFSAlgorithm.js";
+import DjikstraAlgorithm from "../algorithms/djikstra/DjikstraAlgorithm.js";
 import Description from "../components/Description.jsx";
 
 function Algorithm(props) {
@@ -25,6 +26,8 @@ function Algorithm(props) {
       case "bfs":
         setAlgorithm(new BFSAlgorithm());
         break;
+      case "djikstra":
+        setAlgorithm(new DjikstraAlgorithm());
     }
   }
 

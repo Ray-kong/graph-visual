@@ -11,7 +11,7 @@ class BFSAlgorithm extends Algorithm {
     this.queue = new Queue();
     this.currentNode = null;
     this.discovered = [];
-    this.graph.init(true, "#a");
+    this.graph.init(false, "#a", false);
     this.queue.enqueue("a");
   }
 
