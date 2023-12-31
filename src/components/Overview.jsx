@@ -1,5 +1,6 @@
 import React from "react";
 import Tag from "./Tag";
+import { Link } from "react-router-dom";
 
 function Overview(props) {
   return (
@@ -7,9 +8,9 @@ function Overview(props) {
       <h2 className="text-white text-xl font-bold pb-4 text-center underline underline-offset-2">
         {props.name}
       </h2>
-      <a href={props.link}>
+      <Link to={props.link}>
         <img src={props.image} className="rounded-xl shadow-md"></img>
-      </a>
+      </Link>
       <div className="w-full flex flex-row gap-4 justify-center pt-4 pb-10">
         <Tag name="Search" condition={props.search} color={"cyan"} />
         <Tag name="Shortest Path" condition={props.shortest} color={"yellow"} />
