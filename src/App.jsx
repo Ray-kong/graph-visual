@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import DFS from "./pages/DFS";
 import BFS from "./pages/BFS";
 import Djikstra from "./pages/Djikstra";
+import Prims from "./pages/Prims";
+import Kruskals from "./pages/Kruskals";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/dfs" element={<DFS />} />
         <Route path="/bfs" element={<BFS />} />
         <Route path="/djikstras" element={<Djikstra />} />
+        <Route path="/prims" element={<Prims />} />
+        <Route path="/kruskals" element={<Kruskals />} />
       </Routes>
     </>
   );

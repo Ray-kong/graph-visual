@@ -5,7 +5,9 @@ import CodeBlock from "../components/CodeBlock.jsx";
 import DFSAlgorithm from "../algorithms/dfs/DFSAlgorithm.js";
 import BFSAlgorithm from "../algorithms/bfs/BFSAlgorithm.js";
 import DjikstraAlgorithm from "../algorithms/djikstra/DjikstraAlgorithm.js";
+import PrimsAlgorithm from "../algorithms/prims/PrimsAlgorithm.js";
 import Description from "../components/Description.jsx";
+import KruskalsAlgorithm from "../algorithms/kruskals/KruskalsAlgorithm.js";
 
 function Algorithm(props) {
   const [algorithm, setAlgorithm] = useState(null);
@@ -28,6 +30,13 @@ function Algorithm(props) {
         break;
       case "djikstra":
         setAlgorithm(new DjikstraAlgorithm());
+        break;
+      case "prims":
+        setAlgorithm(new PrimsAlgorithm());
+        break;
+      case "kruskals":
+        setAlgorithm(new KruskalsAlgorithm());
+        break;
     }
   }
 
