@@ -28,6 +28,7 @@ function Navbar() {
           <img className="px-4" src="vite.svg" />
           <Link to="/">
             <Typography
+              className="hover:text-selected"
               variant="h6"
               noWrap
               component="a"
@@ -59,7 +60,12 @@ function Navbar() {
                     .replace("'", "")
                     .replace(/\s+/g, "")}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography
+                    className="hover:text-selected"
+                    textAlign="center"
+                  >
+                    {page}
+                  </Typography>
                 </Link>
               </MenuItem>
             ))}

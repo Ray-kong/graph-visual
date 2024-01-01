@@ -4,7 +4,9 @@ function Tag(props) {
   return (
     <>
       {props.condition ? (
-        <h3 className={"p-1 text-white rounded-md bg-" + props.color + "-600"}>
+        <h3
+          className={"p-1 text-white rounded-md cursor-default " + props.color}
+        >
           {props.name}
         </h3>
       ) : (

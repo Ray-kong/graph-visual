@@ -9,25 +9,40 @@ function Overview(props) {
         {props.name}
       </h2>
       <Link to={props.link}>
-        <img src={props.image} className="rounded-xl shadow-md"></img>
+        <img
+          src={props.image}
+          className="rounded-xl shadow-md hover:scale-105 ease-in duration-200"
+        ></img>
       </Link>
       <div className="w-full flex flex-row gap-4 justify-center pt-4 pb-10">
-        <Tag name="Search" condition={props.search} color={"cyan"} />
-        <Tag name="Shortest Path" condition={props.shortest} color={"yellow"} />
-        <Tag name="Network Flow" condition={props.network} color={"red"} />
-        <Tag name="MST" condition={props.mst} color={"blue"} />
+        <Tag name="Search" condition={props.search} color={"bg-cyan-600"} />
+        <Tag
+          name="Shortest Path"
+          condition={props.shortest}
+          color={"bg-yellow-600"}
+        />
+        <Tag
+          name="Network Flow"
+          condition={props.network}
+          color={"bg-red-600"}
+        />
+        <Tag name="MST" condition={props.mst} color={"bg-blue-600"} />
         <Tag
           name="Connected Components"
           condition={props.connected}
-          color={"orange"}
+          color={"bg-orange-600"}
         />
-        <Tag name="Undirected" condition={props.undirected} color={"amber"} />
-        <Tag name="Directed" condition={props.directed} color={"rose"} />
-        <Tag name="Greedy" condition={props.greedy} color={"green"} />
+        <Tag
+          name="Undirected"
+          condition={props.undirected}
+          color={"bg-amber-600"}
+        />
+        <Tag name="Directed" condition={props.directed} color={"bg-rose-600"} />
+        <Tag name="Greedy" condition={props.greedy} color={"bg-green-600"} />
         <Tag
           name="Dynamic Programming"
           condition={props.dynamic}
-          color={"violet"}
+          color={"bg-violet-600"}
         />
       </div>
     </div>
