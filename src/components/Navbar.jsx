@@ -25,7 +25,7 @@ function Navbar() {
     <AppBar position="static">
       <Container className="bg-primary" maxWidth="3xl">
         <Toolbar disableGutters>
-          <img className="px-4" src="vite.svg" />
+          <img className="pl-4 pr-2 h-[50px]" src="logo.png" />
           <Link to="/">
             <Typography
               className="hover:text-selected"
