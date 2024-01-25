@@ -8,6 +8,7 @@ import DjikstraAlgorithm from "../algorithms/djikstra/DjikstraAlgorithm.js";
 import PrimsAlgorithm from "../algorithms/prims/PrimsAlgorithm.js";
 import Description from "../components/Description.jsx";
 import KruskalsAlgorithm from "../algorithms/kruskals/KruskalsAlgorithm.js";
+import Footer from "../components/Footer.jsx";
 
 function Algorithm(props) {
   const [algorithm, setAlgorithm] = useState(null);
@@ -150,6 +151,7 @@ function Algorithm(props) {
           content={props.description}
         />
       </div>
+      <Footer />
     </>
   );
 }
