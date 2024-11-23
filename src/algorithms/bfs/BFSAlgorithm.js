@@ -33,7 +33,7 @@ class BFSAlgorithm extends Algorithm {
       this.graph.setCurrent(this.currentNode);
       this.stage = Stages[1];
       this.highlightLine = "7";
-    }
+    } 
   }
 
   checkOutEdges() {
